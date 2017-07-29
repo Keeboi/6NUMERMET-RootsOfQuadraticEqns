@@ -262,7 +262,7 @@ public class FrmMainController implements Initializable {
         xu.setCellValueFactory(new PropertyValueFactory<>("xl"));
         ea.setCellValueFactory(new PropertyValueFactory<>("ea"));
         table.getColumns().clear();
-        uiDataRetriever dr = new uiDataRetriever(function.getText(), iteration.getText(), 
+        uiDataRetriever dr = new uiDataRetriever(function.getText().replaceAll("\\s+", ""), iteration.getText(), 
                 approxError.getText(), txtXL.getText(), txtXU.getText());
         ObservableList<Data> data =FXCollections.observableArrayList();
         table.setItems(data);
@@ -287,7 +287,7 @@ public class FrmMainController implements Initializable {
         xi1.setCellValueFactory(new PropertyValueFactory<>("xi1"));
         ea.setCellValueFactory(new PropertyValueFactory<>("ea"));
         table.getColumns().clear();
-        uiDataRetriever dr = new uiDataRetriever(function.getText(), iteration.getText(), 
+        uiDataRetriever dr = new uiDataRetriever(function.getText().replaceAll("\\s+", ""), iteration.getText(), 
                 approxError.getText(), txtXi.getText(), 2);
         ObservableList<Data> data =FXCollections.observableArrayList();
         table.setItems(data);
@@ -308,7 +308,7 @@ public class FrmMainController implements Initializable {
         xi1.setCellValueFactory(new PropertyValueFactory<>("xi1"));
         ea.setCellValueFactory(new PropertyValueFactory<>("ea"));
         table.getColumns().clear();
-        uiDataRetriever dr = new uiDataRetriever(function.getText(), iteration.getText(), 
+        uiDataRetriever dr = new uiDataRetriever(function.getText().replaceAll("\\s+", ""), iteration.getText(), 
                 approxError.getText(), txtXi.getText(), 4);
         ObservableList<Data> data =FXCollections.observableArrayList();
         table.setItems(data);
@@ -332,7 +332,7 @@ public class FrmMainController implements Initializable {
         ximin1.setCellValueFactory(new PropertyValueFactory<>("ximin1"));
         ea.setCellValueFactory(new PropertyValueFactory<>("ea"));
         table.getColumns().clear();
-        uiDataRetriever dr = new uiDataRetriever(function.getText(), iteration.getText(), 
+        uiDataRetriever dr = new uiDataRetriever(function.getText().replaceAll("\\s+", ""), iteration.getText(), 
                 approxError.getText(), txtXi.getText(), txtXi1.getText(), 3);
         ObservableList<Data> data =FXCollections.observableArrayList();
         table.setItems(data);

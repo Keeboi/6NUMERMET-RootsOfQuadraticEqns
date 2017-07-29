@@ -41,7 +41,7 @@ public class Secant {
         boolean controlLoop = true;
         for(int iteration = 1; controlLoop; iteration++){
             xiPlusOne = Double.parseDouble(getXiPlusOne());
-            String strApproxError = (iteration == 1) ? "0" : 
+            String strApproxError = (iteration == 1) ? "999" : 
                                     getApproxError(
                                             xiPlusOne, Double.parseDouble(
                                                     this.xiPlusOneHolder.get(this.xiPlusOneHolder.size()-1)
@@ -63,6 +63,7 @@ public class Secant {
                 break;
             }
         }
+        approximateErrorHolder.set(0, "N/A");
     }
     
     private String getXiPlusOne(){

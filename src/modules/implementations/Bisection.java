@@ -57,7 +57,8 @@ public class Bisection {
                                             xR, Double.parseDouble(
                                                     this.xrHolder.get(this.xrHolder.size()-1)
                                             )
-                                    );      
+                                    );  
+            
             double approximateError = Double.parseDouble(strApproxError);
             
             approximateErrorHolder.add(strApproxError);
@@ -75,6 +76,7 @@ public class Bisection {
                 break;
             }
         }
+        approximateErrorHolder.set(0, "N/A");
     }
     
     private String getApproxError(double currentVal, double prevVal){

@@ -119,10 +119,10 @@ public class FrmMainController implements Initializable {
             else if(secant.isSelected())
                 initializeSecant();
         }catch(Exception e){
-            showError();
+            showError(e);
         }
     }
-    private void showError(){
+    private void showError(Exception e){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error in inputs!");
         String errorMsg = "";
@@ -136,11 +136,10 @@ public class FrmMainController implements Initializable {
                 txtXU.getText().isEmpty() || txtXL.getText().isEmpty())
             errorMsg+= "No Inputs given!";
         alert.setHeaderText(errorMsg);
-        alert.getDialogPane().setExpandableContent(printError());
+        alert.getDialogPane().setExpandableContent(printError(e));
         alert.showAndWait();
     }
-    private GridPane printError(){
-        Exception ex = new Exception("Error");
+    private GridPane printError(Exception ex){
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         ex.printStackTrace(pw);

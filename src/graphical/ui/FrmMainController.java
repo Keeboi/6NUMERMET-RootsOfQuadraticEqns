@@ -110,7 +110,10 @@ public class FrmMainController implements Initializable {
     @FXML
     private void onCalcClick(){
         try{
-            if(bisection.isSelected())
+            if(txtXi.getText().equals(txtXi1.getText())
+                    && secant.isSelected())
+                throw new Exception("Both values cannot be the same. Would result to division by zero");
+            else if(bisection.isSelected())
                 initializeBisection();
             else if(newtonRaphson.isSelected())
                 initializeNewtonRaphson();
@@ -127,15 +130,16 @@ public class FrmMainController implements Initializable {
         alert.setTitle("Error in inputs!");
         String errorMsg = "";
         if(function.getText().isEmpty())
-            errorMsg += "No function given!\n";
+            errorMsg += "Invalid function\n";
         if(approxError.getText().isEmpty() && approxEnable.isSelected())
-            errorMsg += "No Approximate Error given!\n";
+            errorMsg += "Invalid Approximate Error\n";
         if(iteration.getText().isEmpty() && iterEnable.isSelected())
-            errorMsg += "No iteration given!\n";
+            errorMsg += "Invalid iteration\n";
         if(txtXi.getText().isEmpty() || txtXi1.getText().isEmpty() ||
                 txtXU.getText().isEmpty() || txtXL.getText().isEmpty())
-            errorMsg+= "No Inputs given!";
+            errorMsg+= "Invalid Inputs";
         alert.setHeaderText(errorMsg);
+        alert.setContentText(e.getMessage());
         alert.getDialogPane().setExpandableContent(printError(e));
         alert.showAndWait();
     }

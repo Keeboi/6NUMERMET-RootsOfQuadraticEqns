@@ -17,6 +17,7 @@ public class NewtonRaphson {
     private double targetApproximate;
     private List<String> approximateError;
     private List<String> xiplusone;
+    private List<String> xI;
     private ExpressionEvaluatorInterface evaluate;
     private DerivativesInterface derive;
     private String expression;
@@ -29,6 +30,7 @@ public class NewtonRaphson {
         this.expression = expression;
         xiplusone = new ArrayList<String>();
         approximateError = new ArrayList<String>();
+        xI = new ArrayList<String>();
         iterations = 0;
         targetApproximate = 0;
         this.evaluate = evaluate;
@@ -49,6 +51,9 @@ public class NewtonRaphson {
     }
     public List<String> getApproximateError(){
         return approximateError;
+    }
+    public List<String> getXi(){
+        return xI;
     }
     
     private String evaluateFunction(double xi){
@@ -80,9 +85,10 @@ public class NewtonRaphson {
             
            String strXiPlus = getXiPlusOne(xi);
            double xiplusone = Double.parseDouble(strXiPlus);
-           String approxError = (iteration == 1) ? "NA" : getApproximateError(xiplusone, 
+           String approxError = (iteration == 1) ? "N/A" : getApproximateError(xiplusone, 
                    Double.parseDouble(this.xiplusone.get(this.xiplusone.size()-1)));   
            this.xiplusone.add(strXiPlus);
+           xI.add(Double.toString(xi));
            replaceXi(xiplusone);
            this.approximateError.add(approxError);
            if(iterations == iteration) control = false;

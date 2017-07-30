@@ -16,7 +16,7 @@ public class uiDataRetriever {
     private NewtonRaphson newton;
     private ModifiedSecant mSecant;
     private Secant secant;
-    public List<String> xu, xl, xr, ea, xi1, ximin1;
+    public List<String> xu, xl, xr, ea, xi1, ximin1, xi;
     public uiDataRetriever(String exp, String iter, String ea, String xl, String xu){
             bisection = new Bisection(
                     new ExpressionEvaluator(), 
@@ -90,16 +90,20 @@ public class uiDataRetriever {
                 break;
             case 2:
                 xi1 = newton.getXiPlusOne();
+                xi = newton.getXi();
                 ea = newton.getApproximateError();
+                
                 break;
             case 3:
                 xi1 = secant.getXiPlusOnes();
+                xi = secant.getXis();
                 ximin1 = secant.getXiMunesOnes();
                 ea = secant.getApproximateErrors();
                 break;
             case 4:
                 xi1 = mSecant.getXiPlusOne();
                 ea = mSecant.getApproximateError();
+                xi= mSecant.getXi();
                 break;
         }
         

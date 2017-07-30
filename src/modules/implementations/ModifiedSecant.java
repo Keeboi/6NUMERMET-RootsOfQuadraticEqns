@@ -14,6 +14,7 @@ public class ModifiedSecant {
     private double xi;
     private int iterations;
     private double targetApproximate;
+    private List<String> xI;
     private List<String> approximateError;
     private List<String> xiplusone;
     private ExpressionEvaluatorInterface evaluate;
@@ -26,6 +27,7 @@ public class ModifiedSecant {
         this.expression = expression;
         xiplusone = new ArrayList<String>();
         approximateError = new ArrayList<String>();
+        xI = new ArrayList<String>();
         iterations = 0;
         targetApproximate = 0;
         this.evaluate = evaluate;
@@ -46,9 +48,13 @@ public class ModifiedSecant {
     public List<String> getApproximateError(){
         return approximateError;
     }
+    public List<String> getXi(){
+        return xI;
+    }
      public int getTotalIterations(){
         return xiplusone.size();
     }
+    
     private String evaluateFunction(double xi){
         String function = expression.replaceAll("x", "*"+xi);
         return evaluate.roundToSignificantDigits(evaluate.evaluateExpression(function), significantDigits);
@@ -69,9 +75,14 @@ public class ModifiedSecant {
         for(int iteration=1; control ; iteration++){
             String strXiPlus = getXiPlusOne(xi);
             double xiplusone = Double.parseDouble(strXiPlus);
-           String approxError = (iteration == 1) ? "0" : getApproximateError(xiplusone, 
+<<<<<<< HEAD:src/modules/implementations/ModifiedSecant.java
+           String approxError = (iteration == 1) ? "999" : getApproximateError(xiplusone, 
+=======
+           String approxError = (iteration == 1) ? "N/A" : getApproximateError(xiplusone, 
+>>>>>>> 60a93de9596b0324387b8e61b4eb10c0fdfc7f4b:implementations/ModifiedSecant.java
                    Double.parseDouble(this.xiplusone.get(this.xiplusone.size()-1)));
            this.xiplusone.add(strXiPlus);
+           xI.add(Double.toString(xi));
            replaceXi(xiplusone);
            this.approximateError.add(approxError);
            if(iterations == iteration) control = false;

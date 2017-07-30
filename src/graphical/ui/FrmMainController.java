@@ -66,7 +66,7 @@ public class FrmMainController implements Initializable {
     
     @FXML
     private void onApproxClick(){
-        if(approxError.isEditable()){
+        if(!approxEnable.isSelected()){
             approxError.setEditable(false);
             approxError.setText("");
             approxError.setStyle("-fx-border-color: #FF6D6D;-fx-border-radius: 5px");
@@ -74,12 +74,14 @@ public class FrmMainController implements Initializable {
         else{
             approxError.setEditable(true);
             approxError.setStyle("-fx-border-color: green;-fx-border-radius: 5px");
+            iterEnable.setSelected(false);
+            onIterClick();
         }
     }
     
     @FXML
     private void onIterClick(){
-        if(iteration.isEditable()){
+        if(!iterEnable.isSelected()){
             iteration.setEditable(false);
             iteration.setText("");
             iteration.setStyle("-fx-border-color: #FF6D6D;-fx-border-radius: 5px");
@@ -87,13 +89,14 @@ public class FrmMainController implements Initializable {
         else{
             iteration.setEditable(true);
             iteration.setStyle("-fx-border-color: green;-fx-border-radius: 5px");
+            approxEnable.setSelected(false);
+            onApproxClick();
         }
     }
     
     @FXML
     private void onBisectionClick(){
         getBracketingUI();
-        //initializeBisection();
     }
     @FXML
     private void onNewtonClick(){
@@ -285,9 +288,11 @@ public class FrmMainController implements Initializable {
     private void initializeNewtonRaphson(){
         TableColumn iter = new TableColumn("Iterations");
         TableColumn xi1 = new TableColumn("xi+1");
+        TableColumn xi = new TableColumn("xi");
         TableColumn ea = new TableColumn("Ea%");
         iter.setCellValueFactory(new PropertyValueFactory<>("iter"));
         xi1.setCellValueFactory(new PropertyValueFactory<>("xi1"));
+        xi.setCellValueFactory(new PropertyValueFactory<>("xi"));
         ea.setCellValueFactory(new PropertyValueFactory<>("ea"));
         table.getColumns().clear();
         uiDataRetriever dr = new uiDataRetriever(function.getText().replaceAll("\\s+", ""), iteration.getText(), 
@@ -299,6 +304,7 @@ public class FrmMainController implements Initializable {
             data.add(
                     new Data(i+1, 
                     dr.xi1.get(i),
+                    dr.xi.get(i),
                     dr.ea.get(i)
             ));
         table.getColumns().addAll(iter, xi1, ea);   
@@ -320,6 +326,7 @@ public class FrmMainController implements Initializable {
             data.add(
                     new Data(i+1, 
                     dr.xi1.get(i),
+                    dr.xi.get(i),
                     dr.ea.get(i)
             ));
         table.getColumns().addAll(iter, xi1, ea);
@@ -344,8 +351,9 @@ public class FrmMainController implements Initializable {
             data.add(
                     new Data(i+1, 
                     dr.xi1.get(i),
+                    dr.xi.get(i),
                     dr.ximin1.get(i),
-                    dr.ea.get(i)
+                    dr.ea.get(i),1
             ));
         table.getColumns().addAll(iter, xi1, ximin1, ea);
         

@@ -75,11 +75,8 @@ public class ModifiedSecant {
         for(int iteration=1; control ; iteration++){
             String strXiPlus = getXiPlusOne(xi);
             double xiplusone = Double.parseDouble(strXiPlus);
-<<<<<<< HEAD:src/modules/implementations/ModifiedSecant.java
+
            String approxError = (iteration == 1) ? "999" : getApproximateError(xiplusone, 
-=======
-           String approxError = (iteration == 1) ? "N/A" : getApproximateError(xiplusone, 
->>>>>>> 60a93de9596b0324387b8e61b4eb10c0fdfc7f4b:implementations/ModifiedSecant.java
                    Double.parseDouble(this.xiplusone.get(this.xiplusone.size()-1)));
            this.xiplusone.add(strXiPlus);
            xI.add(Double.toString(xi));

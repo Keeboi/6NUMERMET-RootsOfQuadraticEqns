@@ -96,19 +96,29 @@ public class FrmMainController implements Initializable {
     
     @FXML
     private void onBisectionClick(){
+        clearFields();
         getBracketingUI();
     }
     @FXML
     private void onNewtonClick(){
+        clearFields();
         getOpenUI();
     }
     @FXML
     private void onSecantClick(){
+        clearFields();
         getOpenUI();
     }
     @FXML
     private void onMSecantClick(){
+        clearFields();
         getOpenUI();
+    }
+    private void clearFields(){
+        txtXU.setText("");
+        txtXL.setText("");
+        txtXi.setText("");
+        txtXi1.setText("");
     }
     @FXML
     private void onCalcClick(){
@@ -307,14 +317,16 @@ public class FrmMainController implements Initializable {
                     dr.xi.get(i),
                     dr.ea.get(i)
             ));
-        table.getColumns().addAll(iter, xi1, ea);   
+        table.getColumns().addAll(iter, xi1, xi, ea);   
     }
     private void initializeModifiedSecant(){
         TableColumn iter = new TableColumn("Iterations");
         TableColumn xi1 = new TableColumn("xi+1");
+        TableColumn xi = new TableColumn("xi");
         TableColumn ea = new TableColumn("Ea%");
         iter.setCellValueFactory(new PropertyValueFactory<>("iter"));
         xi1.setCellValueFactory(new PropertyValueFactory<>("xi1"));
+        xi.setCellValueFactory(new PropertyValueFactory<>("xi"));
         ea.setCellValueFactory(new PropertyValueFactory<>("ea"));
         table.getColumns().clear();
         uiDataRetriever dr = new uiDataRetriever(function.getText().replaceAll("\\s+", ""), iteration.getText(), 
@@ -329,16 +341,18 @@ public class FrmMainController implements Initializable {
                     dr.xi.get(i),
                     dr.ea.get(i)
             ));
-        table.getColumns().addAll(iter, xi1, ea);
+        table.getColumns().addAll(iter, xi1, xi, ea);
         
     }
     private void initializeSecant(){
         TableColumn iter = new TableColumn("Iterations");
         TableColumn xi1 = new TableColumn("xi+1");
+        TableColumn xi = new TableColumn("xi");
         TableColumn ximin1 = new TableColumn("xi-1");
         TableColumn ea = new TableColumn("Ea%");
         iter.setCellValueFactory(new PropertyValueFactory<>("iter"));
         xi1.setCellValueFactory(new PropertyValueFactory<>("xi1"));
+        xi.setCellValueFactory(new PropertyValueFactory<>("xi"));
         ximin1.setCellValueFactory(new PropertyValueFactory<>("ximin1"));
         ea.setCellValueFactory(new PropertyValueFactory<>("ea"));
         table.getColumns().clear();
@@ -355,7 +369,7 @@ public class FrmMainController implements Initializable {
                     dr.ximin1.get(i),
                     dr.ea.get(i),1
             ));
-        table.getColumns().addAll(iter, xi1, ximin1, ea);
+        table.getColumns().addAll(iter, xi1, xi, ximin1, ea);
         
     }
 }

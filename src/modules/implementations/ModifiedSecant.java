@@ -75,7 +75,10 @@ public class ModifiedSecant {
         for(int iteration=1; control ; iteration++){
             String strXiPlus = getXiPlusOne(xi);
             double xiplusone = Double.parseDouble(strXiPlus);
+<<<<<<< HEAD
 
+=======
+>>>>>>> a57599d55ae92890b97baebce4b7b66c2bcce0f0
            String approxError = (iteration == 1) ? "999" : getApproximateError(xiplusone, 
                    Double.parseDouble(this.xiplusone.get(this.xiplusone.size()-1)));
            this.xiplusone.add(strXiPlus);

@@ -10,7 +10,7 @@ import modules.implementations.Bisection;
 import modules.implementations.ExpressionEvaluator;
 import modules.interfaces.DerivativesInterface;
 
-public class BisectionPrototype implements DerivativesInterface{
+public class NumermetDerivatives implements DerivativesInterface{
     public static void main(String[] args) {
            String expression = "2x^3-11.7x^2+17.7x-5";
            float stepSize = 1;
